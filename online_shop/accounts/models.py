@@ -30,3 +30,16 @@ class OtpCode(models.Model):
 
 	def __str__(self):
 		return f'{self.phone_number} - {self.code} - {self.created}'
+	
+
+class Address(models.Model):
+	country = models.CharField(max_length=100)
+	province = models.CharField(max_length=100)
+	city = models.CharField(max_length=100)
+	street = models.CharField(max_length=100)
+	plaque = models.IntegerField()
+	postal_code = models.IntegerField()
+	
+	def get_address(self):
+		return f'{self.street}, {self.plaque}, {self.city}, {self.province}, {self.country}'
+	
