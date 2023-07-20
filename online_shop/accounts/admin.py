@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
 from .models import User
+from .models import OtpCode
 
 class CustomUserAdmin(UserAdmin):
     model = User
@@ -27,3 +28,12 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(User, CustomUserAdmin)
 # admin.site.unregister(Group)
+
+
+class OtpCodeAdmin(admin.ModelAdmin):
+    list_display = ['id', 'phone_number', 'code', 'created']
+    search_fields = ['phone_number']
+    ordering = ['id']
+
+
+admin.site.register(OtpCode, OtpCodeAdmin)
