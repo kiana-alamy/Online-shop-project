@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import UserManager
 
-
+# Custom user model
 class User(AbstractBaseUser, PermissionsMixin):
 	email = models.EmailField(max_length=255, unique=True)
 	phone_number = models.CharField(max_length=11, unique=True)
@@ -23,6 +23,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 		return self.is_admin
 
 
+
+# Model class to store the OTP code sent to the user
 class OtpCode(models.Model):
 	phone_number = models.CharField(max_length=11, unique=True)
 	code = models.PositiveSmallIntegerField()
@@ -32,6 +34,8 @@ class OtpCode(models.Model):
 		return f'{self.phone_number} - {self.code} - {self.created}'
 	
 
+
+# Model class to represent the user's address
 class Address(models.Model):
 	country = models.CharField(max_length=100)
 	province = models.CharField(max_length=100)
@@ -42,4 +46,5 @@ class Address(models.Model):
 	
 	def get_address(self):
 		return f'{self.street}, {self.plaque}, {self.city}, {self.province}, {self.country}'
+	# Function to return the complete user address
 	
