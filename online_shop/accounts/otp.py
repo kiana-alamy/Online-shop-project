@@ -23,14 +23,16 @@ def send_otp(phone_number):
     # Store the OTP in the database
     otp = OtpCode.objects.create(phone_number=phone_number, code=code)
 
+    print(f'Your verification code is {code}')
+
     # Send the OTP code via Kavenegar
-    try:
-        api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
-        params = {
-            'sender': 'MYSENDER',
-            'receptor': phone_number,
-            'message': f'Your verification code is {code}',
-        }
-        api.sms_send(params)
-    except (APIException, HTTPException) as e:
-        raise ValidationError(str(e))
+    # try:
+    #     api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
+    #     params = {
+    #         'sender': 'MYSENDER',
+    #         'receptor': phone_number,
+    #         'message': f'Your verification code is {code}',
+    #     }
+    #     api.sms_send(params)
+    # except (APIException, HTTPException) as e:
+    #     raise ValidationError(str(e))
