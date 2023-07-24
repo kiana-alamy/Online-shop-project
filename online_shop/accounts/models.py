@@ -48,7 +48,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     user_permissions = models.ManyToManyField('auth.Permission', related_name='custom_user_permissions', blank=True)
 
     def __str__(self):
-        return self.email
+        # return self.email
+        return self.phone_number
 
     @property
     def is_staff(self):
