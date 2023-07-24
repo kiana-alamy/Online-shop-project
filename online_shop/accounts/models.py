@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from core.models import BaseModel
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, phone_number, full_name, password=None):
@@ -54,3 +56,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_admin
+    
+
+class Address(BaseModel):
+    address = models.CharField(max_length=200)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.address
