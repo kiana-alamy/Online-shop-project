@@ -5,7 +5,6 @@ from django.views import View
 
 class RegisterView(View):
     form_class = RegistrationForm
-    # print(11111111111111)
     template_name = 'register.html'
     def get(self, request):
         form = self.form_class
