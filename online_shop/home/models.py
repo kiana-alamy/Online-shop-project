@@ -4,7 +4,8 @@ from ckeditor.fields import RichTextField
 
 
 class Category(models.Model):
-	sub_category = models.ForeignKey('self', on_delete=models.CASCADE, related_name='scategory', null=True, blank=True)
+	# ********* parent
+	sub_category = models.ForeignKey('self', on_delete=models.CASCADE, related_name='s_category', null=True, blank=True)
 	is_sub = models.BooleanField(default=False)
 	name = models.CharField(max_length=200)
 	slug = models.SlugField(max_length=200, unique=True)
@@ -22,10 +23,13 @@ class Category(models.Model):
 	
 
 class Product(models.Model):
-	category = models.ManyToManyField(Category, related_name='products')
+	# *********** forig
+	# category = models.ManyToManyField(Category, related_name='product_s')
 	name = models.CharField(max_length=200)
 	slug = models.SlugField(max_length=200, unique=True)
 	image = models.ImageField()
+
+	# ******************** chekiditor
 	description = RichTextField()
 	price = models.IntegerField()
 	available = models.BooleanField(default=True)

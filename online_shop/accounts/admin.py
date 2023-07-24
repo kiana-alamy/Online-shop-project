@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
-from .models import User ,OtpCode , Address
+from .models import User
 
 class CustomUserAdmin(UserAdmin):
     model = User
@@ -38,9 +38,9 @@ admin.site.register(User, CustomUserAdmin)
 # admin.site.register(OtpCode, OtpCodeAdmin)
 
 
-class AddressAdmin(admin.ModelAdmin):
-    list_display = ['id', 'get_address']
-    ordering = ['id']
+# class AddressAdmin(admin.ModelAdmin):
+#     list_display = ['id', 'get_address']
+#     ordering = ['id']
 
 
-admin.site.register(Address, AddressAdmin)
+# admin.site.register(Address, AddressAdmin)
