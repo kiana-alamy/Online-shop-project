@@ -3,4 +3,4 @@ from django.views import View
 
 class HomeView(View):
     def get(self, request):
-        return render(request, 'templates/index.html')
+        return render(request, 'index.html')
