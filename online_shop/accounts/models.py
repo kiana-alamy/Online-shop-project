@@ -39,15 +39,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(max_length=11, unique=True)
     full_name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=True)
 
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = ['email', 'full_name']
 
-    groups = models.ManyToManyField('auth.Group', related_name='custom_user_groups', blank=True)
-    user_permissions = models.ManyToManyField('auth.Permission', related_name='custom_user_permissions', blank=True)
+    # groups = models.ManyToManyField('auth.Group', related_name='custom_user_groups', blank=True)
+    # user_permissions = models.ManyToManyField('auth.Permission', related_name='custom_user_permissions', blank=True)
 
     def __str__(self):
         # return self.email
