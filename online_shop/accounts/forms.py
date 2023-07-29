@@ -1,4 +1,4 @@
-from typing import Any
+# from typing import Any
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import User
@@ -33,7 +33,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('phone_number', 'lastname', 'firstname', 'last_login',)
+        fields = ('phone_number', 'full_name', 'last_login',)
 
 
 class RegistrationForm(forms.Form):
