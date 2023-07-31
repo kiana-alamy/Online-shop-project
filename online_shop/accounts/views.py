@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .forms import UserRegistrationForm
 from django.views import View
+import random
+from utils import send_otp_code
 
 
 class UserRegisterView(View):
@@ -12,10 +14,10 @@ class UserRegisterView(View):
 
     def post(self, request):
         form = self.form_class(request.POST)
-        # if form.is_valid():
-        #     cd = form.cleaned_data
-        #     rand = random.randint(1000 , 9999)
-        #     send_otp_code(cd['phone_number'] , rand)
+        if form.is_valid():
+            cd = form.cleaned_data
+            rand = random.randint(1000 , 9999)
+            send_otp_code(cd['phone_number'] , rand)
         #     OtpCode.objects.create(phone_number = cd['phone_number'] , code = rand)
         #     request.session['user_registration_info'] = {
         #         'phone_number' : cd['phone_number'] , 
