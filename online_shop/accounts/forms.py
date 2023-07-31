@@ -42,11 +42,27 @@ class UserRegistrationForm(forms.Form):
     full_name = forms.CharField(max_length='200', label='Full name')
     password = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
+
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] and cd['password2'] and cd['password'] != cd['password2']:
             raise ValidationError('password dont match')
         return cd['password2']
+    
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        user = User.objects.filter(email=email).exists()
+        if user:
+            raise ValidationError('This email already exists')
+        return email
+
+def clean_phone(self):
+		phone = self.cleaned_data['phone']
+		user = User.objects.filter(phone_number=phone).exists()
+		if user:
+			raise ValidationError('This phone number already exists')
+		# OtpCode.objects.filter(phone_number=phone).delete()
+		return phone
     
 
 class VerfiyCodeForm(forms.Form):
