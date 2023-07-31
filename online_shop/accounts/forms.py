@@ -47,3 +47,7 @@ class UserRegistrationForm(forms.Form):
         if cd['password'] and cd['password2'] and cd['password'] != cd['password2']:
             raise ValidationError('password dont match')
         return cd['password2']
+    
+
+class VerfiyCodeForm(forms.Form):
+    code = forms.IntegerField()
