@@ -13,11 +13,15 @@
     <link  href="{% static 'edit_profile/edit_profile.css' %}" rel="stylesheet">
     <link  href="{% static 'cart/css/cart.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-    <title>Online store</title>
+    <title>base page</title>
 </head>
+
 <body>
+    {% include 'inc/navbar.html'%}
+    {% include 'inc/message.html'%}
     {% block content %}
     {% endblock %}
+    {% include 'inc/footer.html'%}
 </body>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
