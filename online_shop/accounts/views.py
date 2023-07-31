@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from .forms import UserRegistrationForm
 from django.views import View
 import random
 from utils import send_otp_code
+from .models import OtpCode
+from django.contrib import messages
 
 
 class UserRegisterView(View):
@@ -18,15 +20,15 @@ class UserRegisterView(View):
             cd = form.cleaned_data
             rand = random.randint(1000 , 9999)
             send_otp_code(cd['phone_number'] , rand)
-        #     OtpCode.objects.create(phone_number = cd['phone_number'] , code = rand)
-        #     request.session['user_registration_info'] = {
-        #         'phone_number' : cd['phone_number'] , 
-        #         'firstname': cd['firstname'],
-        #         'lastname':cd['lastname'],
-        #         'password':cd['password']
-        #     }
+            OtpCode.objects.create(phone_number = cd['phone_number'] , code = rand)
+            request.session['user_registration_info'] = {
+                'phone_number' : cd['phone_number'] , 
+                'full_name': cd['full_name'],
+                'password':cd['password'],
+                'email': cd['email']
+            }
         #     # Account.objects.create_user(
         #     #     phone_number=cd['phone_number'], firstname=cd['firstname'], lastname=cd['lastname'], password=cd['password'])
-        #     messages.success(request, 'we sent you a code' , 'success')
-        #     return redirect('register:verifycode')
+            messages.success(request, 'we sent you a code' , 'success')
+            return redirect('register:verifycode')
         return render(request , 'accounts/register.html',{'form':form})
