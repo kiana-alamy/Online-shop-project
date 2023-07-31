@@ -64,3 +64,12 @@ class Address(BaseModel):
 
     def __str__(self) -> str:
         return self.address
+    
+
+class OtpCode(BaseModel):
+    phone_number = models.CharField(max_length=11, unique=True)
+    code = models.PositiveSmallIntegerField()
+    create = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return f'{self.phone_number} - {self.code} - {self.create}'
