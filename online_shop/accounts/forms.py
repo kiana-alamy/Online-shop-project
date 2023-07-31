@@ -36,10 +36,10 @@ class UserChangeForm(forms.ModelForm):
         fields = ('phone_number', 'full_name', 'last_login',)
 
 
-class RegistrationForm(forms.Form):
+class UserRegistrationForm(forms.Form):
+    email= forms.EmailField()
     phone_number = forms.CharField(max_length=11)
-    firstname = forms.CharField(max_length='100', label='First name')
-    lastname = forms.CharField(max_length='100', label='Last name')
+    full_name = forms.CharField(max_length='200', label='Full name')
     password = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
     def clean_password2(self):
