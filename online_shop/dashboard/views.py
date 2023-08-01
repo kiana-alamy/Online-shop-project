@@ -6,10 +6,10 @@ from shop.models import Product
 class HomeView(View):
     # def get(self, request , category_slug=None):
     def get(self, request):
-        products = Product.objects.filter(status_available=True)
+        products = Product.objects.filter(available=True)
         # categories = Category.objects.all()
         # if category_slug:
         #     category = Category.objects.get(slug = category_slug)
         #     products = products.filter(category = category)
         # return render(request, 'index.html', {'products': products , 'categories':categories})
-        return render(request, 'index.html', {'products': products ,})
+        return render(request, 'dashboard/home.html', {'products': products ,})

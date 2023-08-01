@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_headers %}
-<link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,8 @@
         <div class="card" style="width: 18rem; display:inline-block;">
             <img src="{{ product.image.url }}" class="card-img-top">
             <div class="card-body">
-                <a href="{{ product.get_absolute_url }}" class="card-title">{{ product.name }}</a>
+                <h5 class="card-title">{{ product.title }}</h5>
+                <p class="card-text">{{product.price}} toman</p>
             </div>
         </div>
     {% endfor %}
