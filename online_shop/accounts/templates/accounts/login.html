@@ -1,34 +1,38 @@
-{%extends 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 <section class="vh-100">
     <div class="container py-5 h-100">
         <div class="row d-flex align-items-center justify-content-center h-100">
             <div class="col-md-8 col-lg-7 col-xl-6">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-                    class="img-fluid" alt="Phone image">
+                <div class="bg-dark flex-grow-1 p-5 rounded">
+                    <img src="https://drive.google.com/file/d/10oMJpmo5q8R_cDzbIfaxNjpAyC3mYJl_/view?usp=drive_link"
+                        class="img-fluid" alt="Phone image">
+                </div>
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <!-- phone input -->
-                    <div class="form-outline mb-4">
-                        <h4>Phone: </h4>
-                        {{form.phone_number}}
-                    </div>
+                <div class="bg-dark flex-grow-1 p-5 rounded">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <!-- phone input -->
+                        <div class="form-outline mb-4">
+                            <h4 class="text-white">Phone: </h4>
+                            {{form.phone_number}}
+                        </div>
 
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                        <h4>Password: </h4>
-                        {{form.password}}
-                    </div>
-                 
-                    <div class="d-flex mb-4">
-                        <a href="#!">Forgot password?</a>
-                    </div>
-                    
-                    <!-- Submit button -->
-                    <input type="submit" value="Login">
-                </form>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <h4 class="text-white">Password: </h4>
+                            {{form.password}}
+                        </div>
+
+                        <div class="d-flex mb-4">
+                            <a href="#!" class="text-white">Forgot password?</a>
+                        </div>
+
+                        <!-- Submit button -->
+                        <input type="submit" value="Login">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
