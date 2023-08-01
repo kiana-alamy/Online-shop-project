@@ -56,14 +56,19 @@ class UserRegistrationForm(forms.Form):
             raise ValidationError('This email already exists')
         return email
 
-def clean_phone(self):
-		phone = self.cleaned_data['phone']
-		user = User.objects.filter(phone_number=phone).exists()
-		if user:
-			raise ValidationError('This phone number already exists')
-		# OtpCode.objects.filter(phone_number=phone).delete()
-		return phone
+    def clean_phone(self):
+            phone = self.cleaned_data['phone']
+            user = User.objects.filter(phone_number=phone).exists()
+            if user:
+                raise ValidationError('This phone number already exists')
+            # OtpCode.objects.filter(phone_number=phone).delete()
+            return phone
     
 
 class VerfiyCodeForm(forms.Form):
     code = forms.IntegerField()
+
+
+class UserLoginForm(forms.Form):
+    phone_number = forms.CharField(max_length=11)
+    password = forms.CharField(widget=forms.PasswordInput)
