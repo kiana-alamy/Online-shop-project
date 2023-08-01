@@ -75,7 +75,7 @@ class UserLoginView(View):
 		form = self.form_class(request.POST)
 		if form.is_valid():
 			cd = form.cleaned_data
-			user = authenticate(request, phone_number=cd['phone'], password=cd['password'])
+			user = authenticate(request, phone_number=cd['phone_number'], password=cd['password'])
 			if user is not None:
 				login(request, user)
 				messages.success(request, 'you logged in successfully', 'info')
