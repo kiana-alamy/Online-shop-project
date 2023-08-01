@@ -11,7 +11,7 @@
         <div class="card" style="width: 18rem; display:inline-block;">
             <img src="{{ product.image.url }}" class="card-img-top">
             <div class="card-body">
-                <h5 class="card-title">{{ product.title }}</h5>
+                <a href="{% url 'dashboard:detail.html' %}" class="card-title">{{ product.title }}</a>
                 <p class="card-text">{{product.price}} toman</p>
             </div>
         </div>

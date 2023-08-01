@@ -12,4 +12,4 @@ class HomeView(View):
         #     category = Category.objects.get(slug = category_slug)
         #     products = products.filter(category = category)
         # return render(request, 'index.html', {'products': products , 'categories':categories})
-        return render(request, 'dashboard/home.html', {'products': products ,})
+        return render(request, 'base.html', {'products': products ,})
