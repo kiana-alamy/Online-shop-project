@@ -30,8 +30,8 @@ class Product(models.Model):
     description = models.TextField()
     price = models.IntegerField()
     available = models.BooleanField(default=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateField(auto_now= True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateField(auto_now= True)
     slug = models.SlugField(unique=True)
 
     class Meta:
