@@ -12,6 +12,12 @@ class Category(models.Model):
     is_sub = models.BooleanField(default=False)
     slug = models.SlugField(max_length=200, unique=True)
 
+    class Meta:
+        ordering= ('title',)
+        # برای درست نوشتن مدل جمعه اسم
+        verbose_name= 'category' #مفرد
+        verbose_name_plural= 'caregories' #جمع
+
     def __str__(self):
         return self.title
 
