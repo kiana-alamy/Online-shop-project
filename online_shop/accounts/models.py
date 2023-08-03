@@ -1,45 +1,45 @@
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from core.models import BaseModel
 from .managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-	email = models.EmailField(max_length=255, unique=True)
-	phone_number = models.CharField(max_length=11, unique=True)
-	full_name = models.CharField(max_length=100)
-	is_active = models.BooleanField(default=True)
-	is_admin = models.BooleanField(default=False)
+    email = models.EmailField(max_length=255, unique=True)
+    phone_number = models.CharField(max_length=11, unique=True)
+    full_name = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=True)
 
-	objects = UserManager()
+    objects = UserManager()
 
-	USERNAME_FIELD = 'phone_number'
-	REQUIRED_FIELDS = ['email', 'full_name']
+    USERNAME_FIELD = 'phone_number'
+    REQUIRED_FIELDS = ['email', 'full_name']
 
-	def __str__(self):
-		return self.email
+    # groups = models.ManyToManyField('auth.Group', related_name='custom_user_groups', blank=True)
+    # user_permissions = models.ManyToManyField('auth.Permission', related_name='custom_user_permissions', blank=True)
 
-	@property
-	def is_staff(self):
-		return self.is_admin
+    def __str__(self):
+        return self.email
+        # return self.phone_number
 
+    @property
+    def is_staff(self):
+        return self.is_admin
+    
 
-class OtpCode(models.Model):
-	phone_number = models.CharField(max_length=11, unique=True)
-	code = models.PositiveSmallIntegerField()
-	created = models.DateTimeField(auto_now=True)
+class Address(BaseModel):
+    address = models.CharField(max_length=200)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
-	def __str__(self):
-		return f'{self.phone_number} - {self.code} - {self.created}'
-	
+    def __str__(self) -> str:
+        return self.address
+    
 
-class Address(models.Model):
-	country = models.CharField(max_length=100)
-	province = models.CharField(max_length=100)
-	city = models.CharField(max_length=100)
-	street = models.CharField(max_length=100)
-	plaque = models.IntegerField()
-	postal_code = models.IntegerField()
-	
-	def get_address(self):
-		return f'{self.street}, {self.plaque}, {self.city}, {self.province}, {self.country}'
-	
+class OtpCode(BaseModel):
+    phone_number = models.CharField(max_length=11, unique=True)
+    code = models.PositiveSmallIntegerField()
+    create = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return f'{self.phone_number} - {self.code} - {self.create}'

@@ -1,0 +1,19 @@
+footer{
+    background-color: white;
+}
+.row1 {
+    margin-right: 5px;
+}
+
+.hr-droid {
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.hr-line {
+    width: 100%;
+    position: relative;
+    margin: auto;
+    align-items: center;
+    border-top: 1px solid #E3E0E0FF;
+}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_headers %}
+<link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <br/><br/>
+    {% for product in products %}
+        <div class="card" style="width: 18rem; display:inline-block;">
+            <img src="{{ product.image.url }}" class="card-img-top">
+            <div class="card-body">
+                <a href="{% url 'dashboard:detail.html' %}" class="card-title">{{ product.title }}</a>
+                <p class="card-text">{{product.price}} toman</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

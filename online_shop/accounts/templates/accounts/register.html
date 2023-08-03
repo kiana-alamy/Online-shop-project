@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-lg-7 col-xl-6">
+                <div class="bg-dark flex-grow-1 p-5 rounded">
+                    <img src="{% static 'images/register.jpg'%}" class="lo-img img-fluid" alt="...">
+                </div>
+            </div>
+            <div class="col-lg-5 col-xl-5">
+                <div class="card bg-dark p-4">
+                    <h2 class="text-white mb-4">Register</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <!-- phone input -->
+                        <div class="form-group">
+                            <label class="text-white" for="{{form.phone_number.id_for_label}}">Phone:</label><br>
+                            {{form.phone_number}}
+                        </div>
+                        <!-- full name input -->
+                        <div class="form-group">
+                            <label class="text-white" for="{{form.full_name.id_for_label}}">Full Name:</label><br>
+                            {{form.full_name}}
+                        </div>
+                        <!-- email input -->
+                        <div class="form-group">
+                            <label class="text-white" for="{{form.email.id_for_label}}">Email:</label><br>
+                            {{form.email}}
+                        </div>
+                        <!-- password input -->
+                        <div class="form-group">
+                            <label class="text-white" for="{{form.password.id_for_label}}">Password:</label><br>
+                            {{form.password}}
+                        </div>
+                        <!-- confirm password input -->
+                        <div class="form-group">
+                            <label class="text-white" for="{{form.password2.id_for_label}}">Confirm Password:</label><br>
+                            {{form.password2}}
+                        </div>
+                        <!-- submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block css %}
+<style>
+    .vh-100 {
+        height: 100vh;
+    }
+
+    .bg-dark {
+        background-color: #343a40 !important;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+
+    .form-group input {
+        border: none;
+        border-radius: 0;
+        background-color: #f1f1f1;
+        box-shadow: none;
+    }
+
+    .form-group input:focus {
+        border-color: #007bff;
+        box-shadow: none;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+</style>
+{% endblock %}
