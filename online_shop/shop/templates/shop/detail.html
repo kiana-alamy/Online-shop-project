@@ -9,10 +9,15 @@
         </div>
       </div>
       <div class="col-md-6 p-5" style="background-color: #f9f9f9;">
-        <h2 class="card-title">{{ product.name }}</h2>
+        <h2 class="card-title">{{ product.title }}</h2>
         <hr style="border-top: 2px solid orange; margin-bottom: 1rem;">
         <p class="card-text">{{ product.description|safe }}</p>
         <h3 class="card-price text-warning">{{ product.price }} Toman</h3>
+        <form action="{% url 'orders:addcart' product.id %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="col-12 col-lg-12 add_to" value="add to cart">
+        </form>
       </div>
     </div>
   </div>

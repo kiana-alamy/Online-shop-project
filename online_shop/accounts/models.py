@@ -38,7 +38,7 @@ class Address(BaseModel):
 
 class OtpCode(BaseModel):
     phone_number = models.CharField(max_length=11, unique=True)
-    code = models.PositiveSmallIntegerField()
+    code = models.PositiveSmallIntegerField() #خطای این هندل شود
     create = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:

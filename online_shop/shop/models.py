@@ -3,9 +3,7 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 from core.models import BaseModel
 
-def get_absolute_url(self):
-    print(333333333333333333333333333333333333333333333)
-    return reverse('shop:details', args=[self.slug])
+
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
@@ -44,6 +42,12 @@ class Product(BaseModel):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateField(auto_now= True)
     slug = models.SlugField(unique=True)
+    quantity = models.PositiveIntegerField()
+    count_buying = models.PositiveIntegerField()
+    rate = models.PositiveIntegerField()
+
+
+
 
     class Meta:
         ordering = ('title',)
@@ -52,7 +56,7 @@ class Product(BaseModel):
         return self.title
         
     def get_absolute_url(self):
-        print(111111111111111111111111111111111111111111111111111111)
+        # print(111111111111111111111111111111111111111111111111111111)
         return reverse('shop:details', args=[self.slug])
 
     # def save(self, *args, **kwargs):
