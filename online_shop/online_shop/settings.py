@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'dashboard',
     'shop',
     'orders',
-    'core'
+    'core',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
+
+
+API_CODE = '4271684742647A70516951594C354A333873707868564B35727563736E6743342F774D3661646E6E72756B3D'
