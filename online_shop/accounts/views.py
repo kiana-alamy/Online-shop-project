@@ -85,7 +85,7 @@ class UserLoginView(View):
 		return render(request, self.template_name, {'form':form})
 
 
-class UserLogOutView(LoginRequiredMixin, View):
+class UserLogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         messages.success(request, 'logout successfully byyyy!!!', 'success')
