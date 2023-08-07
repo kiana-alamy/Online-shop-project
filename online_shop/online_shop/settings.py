@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'orders',
     'core',
     'storages',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
