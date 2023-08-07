@@ -5,7 +5,8 @@ import random
 from utils import send_otp_code
 from .models import OtpCode, User
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class UserRegisterView(View):
@@ -82,3 +83,10 @@ class UserLoginView(View):
 				return redirect('home:home')
 			messages.error(request, 'phone or password is wrong', 'warning')
 		return render(request, self.template_name, {'form':form})
+
+
+class UserLogOutView(LoginRequiredMixin, View):
+    def get(self, request):
+        logout(request)
+        messages.success(request, 'logout successfully byyyy!!!', 'success')
+        return redirect('home:home')
