@@ -13,12 +13,14 @@ class Cart:
             cart = self.session[CART_SESSION_ID] = {}
         self.cart = cart
 
+    # برای حلقه زدن در آبجکت ها :
     def __iter__(self):
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
         cart = self.cart.copy()
         for product in products:
             cart[str(product.id)]['product'] = product
+            # اسم محصول رو برای ما نمایش میده در کارت
 
         for item in cart.values():
             item['total_price'] = int(item['price']) * item['quantity']
@@ -29,6 +31,7 @@ class Cart:
 
     def add(self, product, quantity):
         product_id = str(product.id)
+        # اگر محصول داخل سبد خرید نبود یک دونه براش ایجاد میکنم :
         if product_id not in self.cart:
             self.cart[product_id] = {
                 'quantity': 0, 'price': str(product.price)}
@@ -41,6 +44,7 @@ class Cart:
             del self.cart[product_id]
             self.save()
 
+    # ذخیره کردن سشن :
     def save(self):
         self.session.modified = True
 
