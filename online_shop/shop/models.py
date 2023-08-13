@@ -25,12 +25,13 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         print(22222222222222222222222222222222222222222222)
-        return reverse('shop:detail', kwargs={'slug':self.slug})
+        return reverse('dashboard:category_filter', args={self.slug})
 
     def save(self, *args, **kwargs): # new
         self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
-        
+
+
 
 class Product(BaseModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
@@ -46,9 +47,6 @@ class Product(BaseModel):
     count_buying = models.PositiveIntegerField()
     rate = models.PositiveIntegerField()
 
-
-
-
     class Meta:
         ordering = ('title',)
 
@@ -56,7 +54,6 @@ class Product(BaseModel):
         return self.title
         
     def get_absolute_url(self):
-        # print(111111111111111111111111111111111111111111111111111111)
         return reverse('shop:details', args=[self.slug])
 
     # def save(self, *args, **kwargs):
