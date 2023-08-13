@@ -65,7 +65,7 @@ class OrderCreateView(LoginRequiredMixin, View):
         #     quant_store.quantity -= item['quantity']
         #     quant_store.save()
 
-        # cart.clear()
+        cart.clear()
         return redirect('orders:order_detail', order.id)
 
 
