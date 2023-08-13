@@ -46,27 +46,32 @@ class OrderDetailView(LoginRequiredMixin, View):
         return render(request, 'orders/order.html', {'order': order,})
 
 
-class CreateOrderView(LoginRequiredMixin, View):
+class OrderCreateView(LoginRequiredMixin, View):
     def get(self, request):
         cart = Cart(request)
-        for item in cart:
-            quant_store = Product.objects.get(slug=item['product'])
-            if item['quantity'] > quant_store.quantity:
-                messages.error(
-                    request, f"Sorry, this {item['product']}is not available in the quantity you requested", 'danger')
-                return redirect('order:cart')
+        # for item in cart:
+        #     quant_store = Product.objects.get(slug=item['product'])
+        #     if item['quantity'] > quant_store.quantity:
+        #         messages.error(
+        #             request, f"Sorry, this {item['product']}is not available in the quantity you requested", 'danger')
+        #         return redirect('order:cart')
+            
+        # برای کاربری که لاگین کرده یک سبد خرید ایجاد میشود :
         order = Order.objects.create(user=request.user)
         for item in cart:
-            quant_store = Product.objects.get(slug=item['product'])
+            # quant_store = Product.objects.get(slug=item['product'])
             OrderItem.objects.create(
                 order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
-            quant_store.quantity -= item['quantity']
-            quant_store.save()
+        #     quant_store.quantity -= item['quantity']
+        #     quant_store.save()
 
-        cart.clear()
-        return redirect('orders:detail_order', order.id)
+        # cart.clear()
+        return redirect('orders:order_detail', order.id)
 
 
+
+
+#******************************
 # class CheckProfileCart(LoginRequiredMixin, View):
 #     def get(self, request):
 #         user = Account.objects.get(id=request.user.id)
