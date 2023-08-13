@@ -37,12 +37,13 @@ class RemoveCardView(View):
         return redirect('orders:cart')
 
 
-class DetailOrderView(LoginRequiredMixin, View):
-    form_class = OfferForm
+class OrderDetailView(LoginRequiredMixin, View):
+    # form_class = OfferForm
 
     def get(self, request, order_id):
         order = get_object_or_404(Order, id=order_id)
-        return render(request, 'orders/order.html', {'order': order, 'form': self.form_class})
+        # return render(request, 'orders/order.html', {'order': order, 'form': self.form_class})
+        return render(request, 'orders/order.html', {'order': order,})
 
 
 class CreateOrderView(LoginRequiredMixin, View):
