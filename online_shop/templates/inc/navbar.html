@@ -8,6 +8,21 @@
             <a class="nav-link active" href="{% url 'accounts:register' %}">Register</a>
             <a class="nav-link active" href="{% url 'accounts:login' %}">Login</a>
             {% endif %}
+            
+            {% for category in categories %}
+
+            <div class="btn-group">
+                <a href="{{ category.get_absolute_url }}" class="btn btn-warning">{{ category.title }}</a>
+                <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    {% for sub in category.scategory.all %}
+                    <li><a class="dropdown-item" href="{{ sub.get_absolute_url }}">{{ sub.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </nav>
