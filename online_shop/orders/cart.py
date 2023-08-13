@@ -6,7 +6,9 @@ CART_SESSION_ID = 'cart'
 class Cart:
     def __init__(self, request) -> None:
         self.session = request.session
+        # سشن های مربوط به سبد خرید:
         cart = self.session.get(CART_SESSION_ID)
+        # اگر کاربر تا حالا سبد خرید نداشت برای ان سشن سبد خرید ایجاد میکنیم :
         if not cart:
             cart = self.session[CART_SESSION_ID] = {}
         self.cart = cart
