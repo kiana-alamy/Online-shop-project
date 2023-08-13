@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'dashboard',
     'shop',
     'orders',
-    'core'
+    'core',
+    'storages',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'orders.context_processors.cart',
             ],
         },
     },
@@ -111,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -134,3 +137,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
+
+
+API_CODE = '4271684742647A70516951594C354A333873707868564B35727563736E6743342F774D3661646E6E72756B3D'
+
+
+#ARVAN CLOUD STORSGE
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = '03ca5495-7906-4bab-bb91-18d3f70b1765'
+AWS_SECRET_ACCESS_KEY = '8f659aa478210857359601ab3f539f96c0ed4e196fd03386f2bb3cb4b766ef38'
+AWS_S3_ENDPOINT_URL = 'http://s3.ir-thr-at1.arvanstorage.ir'
+AWS_STORAGE_BUCKET_NAME = 'kiana-django-shop-1'
+AWS_SERVICE_NAME = 's3'
+AWS_S3_FILE_OVERWRITE = False

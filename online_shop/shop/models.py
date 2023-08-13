@@ -3,15 +3,13 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 from core.models import BaseModel
 
-def get_absolute_url(self):
-    print(333333333333333333333333333333333333333333333)
-    return reverse('shop:details', args=[self.slug])
+
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
     sub_category = models.ForeignKey(
         'self', on_delete=models.CASCADE,
-        related_name='sub_categories', null=True, blank=True
+        related_name='scategory', null=True, blank=True
     )
     is_sub = models.BooleanField(default=False)
     slug = models.SlugField(max_length=200, unique=True)
@@ -26,16 +24,16 @@ class Category(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        print(22222222222222222222222222222222222222222222)
-        return reverse('shop:detail', kwargs={'slug':self.slug})
+        return reverse('dashboard:category_filter', args={self.slug})
 
     def save(self, *args, **kwargs): # new
         self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
-        
 
-class Product(BaseModel):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
+
+
+class Product(models.Model):
+    category = models.ManyToManyField(Category, related_name='products')
     image = models.ImageField(upload_to='products/%Y/%m/%d')
     title = models.CharField(max_length=250)
     description = models.TextField()
@@ -44,6 +42,9 @@ class Product(BaseModel):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateField(auto_now= True)
     slug = models.SlugField(unique=True)
+    quantity = models.PositiveIntegerField()
+    count_buying = models.PositiveIntegerField()
+    rate = models.PositiveIntegerField()
 
     class Meta:
         ordering = ('title',)
@@ -52,7 +53,6 @@ class Product(BaseModel):
         return self.title
         
     def get_absolute_url(self):
-        print(111111111111111111111111111111111111111111111111111111)
         return reverse('shop:details', args=[self.slug])
 
     # def save(self, *args, **kwargs):
