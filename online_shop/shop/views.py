@@ -8,8 +8,5 @@ from orders.forms import CartAddForm
 class ProductDetailView(View):
     def get(self, request, slug):
         product = Product.objects.get(slug = slug)
-
-        # comment = Comment.objects.filter(product_id = product.id)
         form = CartAddForm()
-        # return render(request, 'product/detail.html', {'product': product , 'form':form , 'comment':comment})
         return render(request, 'shop/detail.html', {'product': product , 'form': form})
