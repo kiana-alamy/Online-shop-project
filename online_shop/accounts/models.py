@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from core.models import BaseModel
 from .managers import UserManager
+# kaak
 
 
 class User(AbstractBaseUser, PermissionsMixin):
