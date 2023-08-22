@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from shop.models import Product , Category
 from django.core.paginator import Paginator
+from .forms import SearchForm
 
 
 class HomeView(View):
@@ -11,11 +12,11 @@ class HomeView(View):
         paginator = Paginator(products , 2)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
+        form = SearchForm()
         if category_slug:
             category = Category.objects.get(slug = category_slug)
             products = products.filter(category = category)
-        
-        return render(request, 'base.html', {'products': page_obj , 'categories':categories})
+        return render(request, 'base.html', {'products': page_obj , 'categories':categories , 'form': form})
 
 
 
