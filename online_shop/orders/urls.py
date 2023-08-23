@@ -11,5 +11,6 @@ urlpatterns=[
     # path('checkprofile/' , views.CheckProfileCart.as_view() , name='check'),
     # path('offer/<int:order_id>' ,views.OfferApplyView.as_view() , name='offer'),
     # path('api/', include('orders.api_urls', namespace='api_order')),
-    # path('pay/<int:order_id>',views.OrderPayView.as_view(),name='pay'),
+    path('pay/<int:order_id>',views.OrderPayView.as_view(),name='order_pay'),
+    path('verify_order/', views.VerifyOrderView.as_view(), name='order_verify'),
 ]
