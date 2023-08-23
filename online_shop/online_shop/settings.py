@@ -153,3 +153,18 @@ AWS_S3_ENDPOINT_URL = 'http://s3.ir-thr-at1.arvanstorage.ir'
 AWS_STORAGE_BUCKET_NAME = 'kiana-django-shop-1'
 AWS_SERVICE_NAME = 's3'
 AWS_S3_FILE_OVERWRITE = False
+
+
+# ZarinPal config: SANDBOX MODE
+MERCHANT = "00000000-0000-0000-0000-000000000000"
+SANDBOX = True
+
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1",
+]
+CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1",
+]
