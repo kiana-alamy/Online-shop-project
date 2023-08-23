@@ -1,4 +1,5 @@
 <div class="row m-2">
+
     {% for product in products %}
     <div class="col-md-3">
         <div class="card mb-3">
@@ -14,17 +15,17 @@
 
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            {% if products.has_previous %} 
+            {% if product.has_previous %} 
             <li class="page-item"><a class="page-link" href="?page=1">First</a></li> 
-          <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number}}">{{ products.previous_page_number}}</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ product.previous_page_number}}">{{ product.previous_page_number}}</a></li>
             {% endif %}
 
-          <li class="page-item"><a class="page-link" href="?page={{ products.number}}" style="background-color:rgb(234, 201, 55)
-        ">{{ products.number}}</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ product.number}}" style="background-color:rgb(234, 201, 55)
+        ">{{ product.number}}</a></li>
 
-          {% if products.has_next %}
-          <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">{{ products.next_page_number }}</a></li>
-          <li class="page-item"><a class="page-link" href="?page={{ products.paginator.num_pages }}">Last</a></li>
+          {% if product.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ product.next_page_number }}">{{ product.next_page_number }}</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ product.paginator.num_pages }}">Last</a></li>
           {% endif %}
         </ul>
       </nav>
