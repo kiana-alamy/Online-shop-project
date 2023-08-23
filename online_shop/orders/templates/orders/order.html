@@ -10,7 +10,39 @@
                 <div class="col-md-3 col-lg-3 col-xl-3">
                     <h5 class="mb-0">Total Price : {{order.get_total_price}}</h5>
                 </div>
-                
+
+                <div>
+                    <br/>
+                    <table class="table table-warning table-striped table-sm">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in cart %}
+                        <tr>
+                            <td>{{ item.product }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.total_price }}</td>
+                        </tr>
+                        {% endfor %}
+                    
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <br/>
+                    <h5 class="mb-0">Your email address : {{user.email}} </h5>
+                    <h5 class="mb-0">Your address : {{user.address}} </h5>
+                </div>
+                <div>
+                    <br/>
+                    <a href="{% url 'orders:order_pay' order.id %}" class="btn btn-primary">Pay</a>
+                </div>
             </div>
         </div>
     </div>
