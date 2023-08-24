@@ -37,17 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "drf_yasg",
+    "rest_framework",
+    "ckeditor",
+    "corsheaders",
+    "django_celery_beat",
+    'storages',
+    'drf_spectacular',
+    # my apps
     'accounts',
     'cart',
     'dashboard',
     'shop',
     'orders',
     'core',
-    'storages',
-    'django_celery_beat',
-    'rest_framework',
-    'drf_spectacular',
-
 ]
 
 MIDDLEWARE = [
@@ -168,3 +171,48 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1",
 ]
+
+
+
+# CELERY SETTINGS
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_ACCEPT_CONTENT = {"application/json"}
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = "Asia/Tehran"
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+
+# SMTP SETTINGS
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "as.faraso.97@gmail.com"
+EMAIL_HOST_PASSWORD = "1382138213821382"
+DEFAULT_FROM_EMAIL = "as.faraso.97@gmail.com"
+
+# CACHES = {
+# "default": {
+# "BACKEND": "django_redis.cache.RedisCache",
+# "LOCATION": "redis://127.0.0.1:6379/1",
+# "OPTIONS": {
+# "CLIENT_CLASS": "django_redis.client.DefaultClient",
+# },
+# }
+# }
+
+
+# #**********************
+# CELERY_RESULT_BACKEND = 'django-db'
+# CELERY_CACHE_BACKEND = 'default'
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+#         'LOCATION': 'my_cache_table',
+#     }
+# }
+# #***********************
+
+
+# BEAT SETTINGS
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
