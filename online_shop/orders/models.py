@@ -10,7 +10,7 @@ class Order(models.Model):
 	paid = models.BooleanField(default=False)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
-	discount = models.IntegerField(blank=True, null=True, default=None)
+	discount = models.IntegerField(blank=True, null=True, default=None) # مقدار تخفیف
 
 	class Meta:
 		ordering = ('paid', '-updated')
@@ -20,9 +20,9 @@ class Order(models.Model):
 
 	def get_total_price(self):
 		total = sum(item.get_cost() for item in self.items.all())
-		# if self.discount:
-		# 	discount_price = (self.discount / 100) * total
-		# 	return int(total - discount_price)
+		if self.discount:
+			discount_price = (self.discount / 100) * total
+			return int(total - discount_price)
 		return total
 	
 
@@ -38,12 +38,13 @@ class OrderItem(models.Model):
 	def get_cost(self):
 		return self.price * self.quantity
 
-# class Offer(BaseModel):
-#     expire_time = models.DateTimeField()
-#     start_time = models.DateTimeField()
-#     percent = models.PositiveIntegerField(validators=[MinValueValidator(0),MaxValueValidator(90)])
-#     offer_code = models.CharField(max_length=100, unique=True)
-#     is_available = models.BooleanField(default=False)
 
-#     def __str__(self) -> str:
-#         return self.offer_code
+class Coupon(models.Model):
+    code = models.CharField(max_length=30, unique=True)
+    valid_from = models.DateTimeField() # شروع
+    valid_to = models.DateTimeField() # انتها
+    discount = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(90)])
+    active = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return self.code
