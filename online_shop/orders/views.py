@@ -181,6 +181,8 @@ class VerifyOrderView(LoginRequiredMixin, View):
 		t_status = request.GET.get('Status')
 		t_authority = request.GET['Authority']
 		if request.GET.get('Status') == 'OK':
+                    cart = Cart(request)
+                    cart.clear()
                     to_email = 'kianaalamy.8182@gmail.com'
                     subject = "Order Confirmed Successfuly"
                     message = f"Transaction success order ID: {order_id}"
