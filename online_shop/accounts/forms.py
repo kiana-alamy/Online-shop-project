@@ -8,6 +8,8 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 class UserCreationForm(forms.ModelForm):
     password1= forms.CharField(label='password', widget= forms.PasswordInput)
     password2= forms.CharField(label='comfirm password', widget= forms.PasswordInput)
+    address2 = forms.CharField(max_length=110)
+    postal_code2 = forms.CharField(max_length=11)
 
     class Meta:
         model= User
@@ -36,12 +38,19 @@ class UserChangeForm(forms.ModelForm):
         fields = ('phone_number', 'full_name', 'last_login',)
 
 
+class UserProfileForm(forms.Form):
+    address= forms.TimeField()
+    postal_code = forms.IntegerField()
+
+
 class UserRegistrationForm(forms.Form):
     email= forms.EmailField()
     phone_number = forms.CharField(max_length=11)
     full_name = forms.CharField(max_length='200', label='Full name')
     password = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
+    address2 = forms.CharField(max_length=110)
+    postal_code2 = forms.CharField(max_length=11)
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -65,6 +74,10 @@ class UserRegistrationForm(forms.Form):
             # چک میکنه اگر برای این شماره قبلا کدی بوده اون رو حذف میکنه
             return phone
     
+    def address(self):
+        return self.cleaned_data['address']
+    
+    
 
 class VerfiyCodeForm(forms.Form):
     code = forms.IntegerField()
@@ -73,3 +86,5 @@ class VerfiyCodeForm(forms.Form):
 class UserLoginForm(forms.Form):
     phone_number = forms.CharField(max_length=11)
     password = forms.CharField(widget=forms.PasswordInput)
+
+

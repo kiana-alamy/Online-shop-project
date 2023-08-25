@@ -10,6 +10,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     full_name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=True)
+    address2 = models.TextField(default= 'man')
+    postal_code2 = models.IntegerField(default='123')
 
     objects = UserManager()
 
@@ -20,8 +22,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # user_permissions = models.ManyToManyField('auth.Permission', related_name='custom_user_permissions', blank=True)
 
     def __str__(self):
-        return self.email
-        # return self.phone_number
+        return f' your email address: {self.email} _____ your address: {self.address2} _____ your postal code: {self.postal_code2}'  
 
     @property
     def is_staff(self):

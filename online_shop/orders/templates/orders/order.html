@@ -33,8 +33,7 @@
 
                 <div>
                     <br/>
-                    <h5 class="mb-0">Your email address : {{user.email}} </h5>
-                    <h5 class="mb-0">Your address : {{user.address}} </h5>
+                    <h5 class="mb-0">{{ order.user }} </h5>
                 </div>
                 <form action="{% url 'orders:apply_coupon' order.id %}" method="post">
                     <br/>

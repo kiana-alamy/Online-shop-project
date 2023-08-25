@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .forms import UserRegistrationForm, VerfiyCodeForm, UserLoginForm
+from .forms import UserRegistrationForm, VerfiyCodeForm, UserLoginForm, UserProfileForm
 from django.views import View
 import random
 from utils import send_otp_code
@@ -8,6 +8,12 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+class UserProfileView(View):
+    form_class = UserProfileForm
+    def post(self, request):
+        form = self.form_class(request.POST)
+        cd = form.cleaned_data
+        
 
 class UserRegisterView(View):
     form_class = UserRegistrationForm
@@ -27,7 +33,9 @@ class UserRegisterView(View):
                 'phone_number' : cd['phone_number'] , 
                 'full_name': cd['full_name'],
                 'password':cd['password'],
-                'email': cd['email']
+                'email': cd['email'],
+                'address2': cd['address2'],
+                'postal_code2': cd['postal_code2']
             }
         #     # Account.objects.create_user(
         #     #     phone_number=cd['phone_number'], firstname=cd['firstname'], lastname=cd['lastname'], password=cd['password'])
@@ -53,7 +61,8 @@ class UserRegisterVerifyCodeView(View):
             if code_instance.code == cd['code']:
                 User.objects.create_user(
                 email=user_session['email'], phone_number=user_session['phone_number'],
-                full_name= user_session['full_name'], password=user_session['password'])
+                full_name= user_session['full_name'], password=user_session['password'],
+                address2= user_session['address2'], postal_code2= user_session['postal_code2'])
                 code_instance.delete()
                 messages.success(request , 'you registered baby!!!' , 'success')
                 return redirect('home:home')
