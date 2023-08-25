@@ -18,12 +18,12 @@ class HomeView(View):
         page_obj = paginator.get_page(page_number)
         products = page_obj
 
-        form = SearchForm()
+        search_form = SearchForm()
         if 'search' in request.GET:
             products = Product.objects.all()
-            form= SearchForm(request.GET)
-            if form.is_valid():
-                cd = form.cleaned_data['search']
+            search_form= SearchForm(request.GET)
+            if search_form.is_valid():
+                cd = search_form.cleaned_data['search']
                 products = products.filter(title__icontains = cd)
 
         if category_slug:
@@ -31,7 +31,7 @@ class HomeView(View):
             category = Category.objects.get(slug = category_slug)
             products = products.filter(category = category)
             
-        return render(request, 'base.html', {'product': page_obj ,'products': products , 'categories':categories , 'form': form })
+        return render(request, 'base.html', {'product': page_obj ,'products': products , 'categories':categories , 'search_form': search_form })
     
 
     # def get(self, request):
