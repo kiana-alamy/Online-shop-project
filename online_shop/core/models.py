@@ -49,7 +49,7 @@ class BaseModel(models.Model):
         verbose_name="Active status",
         help_text="This is active status",
     )
-
+#***************************************************
     def deleter(self, using=None, keep_parents=False):
         self.deleted_at = timezone.now()
         self.is_deleted = True
@@ -67,3 +67,5 @@ class BaseModel(models.Model):
     def activate(self):
         self.is_active = True
         self.save()
+
+#********************************************************        
