@@ -54,3 +54,12 @@ Note if you want payments or email or sms to work you will need to enter your ow
 - A functional profile is created for each user
 - You can change the address during the purchase confirmation
 - A comment section is added for each product
+
+
+We welcome contributions from the community to improve the project. If you would like to contribute, please follow these steps:
+
+1. Fork the repository and clone it to your local machine.
+2. Create a new branch for your feature or bug fix.
+3. Make the necessary changes and commit them.
+4. Push your changes to your forked repository.
+5. Submit a pull request describing the changes you've made.
