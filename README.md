@@ -1,4 +1,4 @@
-About this Project:
+**About this Project:**
 
 Hi, this is an online shopping system project with Python & Django Framework & REST API
 
