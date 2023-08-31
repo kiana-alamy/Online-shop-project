@@ -2,7 +2,7 @@ FROM python:3.10
 LABEL Maintainer="as.faraso.97@gmail.com"
 LABEL Owner="kiana alamy"
 LABEL version="v1"
-WORKDIR /djangoonlineshop
+WORKDIR /djangoonlineshop #پوشه اصلی
 COPY requirements.txt .
 RUN pip install -U pip
 RUN pip install -r requirements.txt
