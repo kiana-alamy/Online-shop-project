@@ -12,6 +12,7 @@ class OrderSerializer(serializers.ModelSerializer):
         result = obj.orderitem.all()
         return OrderItemsSerializer(instance=result , many =True).data
 
+
 class OrderItemsSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from .cart import Cart
 from shop.models import Product
+from accounts.models import User
 from .forms import CartAddForm , CouponApplyForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .models import Order, OrderItem, Coupon
@@ -12,6 +13,7 @@ import datetime
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.conf import settings
+# from orders.tasks import send_email_fun
 from orders.tasks import send_order_status_email
 
 
@@ -128,17 +130,15 @@ class OrderPayView(View):
 class VerifyOrderView(LoginRequiredMixin, View):
 	def get(self, request):
 		order_id = request.session['order_pay']['order_id']
-		order = Order.objects.get(id=int(order_id))
-		t_status = request.GET.get('Status')
-		t_authority = request.GET['Authority']
 		if request.GET.get('Status') == 'OK':
+                    user= User.objects.all()
                     cart = Cart(request)
                     cart.clear()
-                    to_email = 'kianaalamy.8182@gmail.com'
+                    to_email = user.email
                     subject = "Order Confirmed Successfuly"
                     message = f"Transaction success order ID: {order_id}"
-                    # print('4444444444444444444444444')
                     send_order_status_email.delay(to_email ,subject, message)
+                    # send_email_fun.delay(subject, message, settings.EMAIL_HOST_USER, to_email)
 
                     return HttpResponse(f"Transaction success , order ID: {order_id}")
                 
