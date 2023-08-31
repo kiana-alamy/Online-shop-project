@@ -17,11 +17,11 @@ class OrderApiView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        order_ser = OrderSerializer(instance=Order.objects.all(), many=True)
-        order_items_ser = OrderItemsSerializer(
-        instance=OrderItem.objects.all(), many=True)
-        return Response()
-
+        user = request.user
+        orders = user.orders.prefetch_related("orderItems").select_related("user").order_by("created_at")
+        serializer = OrderSerializer(orders, many=True)
+        return Response(serializer.data)
+# select
     def post(self, request):
         account = User.objects.get(id=request.user.id) 
         # orderitem = OrderItem.objects.create(user=account)
