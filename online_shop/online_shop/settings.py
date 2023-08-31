@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     # my apps
     'accounts',
-    'cart',
     'dashboard',
     'shop',
     'orders',
@@ -196,6 +195,10 @@ CELERY_TASK_SERIALIZER = "json"
 CELERY_TIMEZONE = "Asia/Tehran"
 CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
 
+
+# BEAT SETTINGS
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
 # SMTP SETTINGS
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
@@ -228,6 +231,3 @@ CACHES = {
 # }
 # #***********************
 
-
-# BEAT SETTINGS
-CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
