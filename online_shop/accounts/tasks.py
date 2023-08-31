@@ -3,6 +3,7 @@ from accounts.models import OtpCode
 from datetime import datetime, timedelta
 import pytz
 
+print("22222222222222222222222222222")
 
 @shared_task
 def remove_expired_otp_codes():
