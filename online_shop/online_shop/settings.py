@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django_celery_beat",
     'storages',
     'drf_spectacular',
+    'rest_framework_swagger',
     # my apps
     'accounts',
     'cart',
@@ -200,19 +201,20 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "as.faraso.97@gmail.com"
-EMAIL_HOST_PASSWORD = "1382138213821382"
-DEFAULT_FROM_EMAIL = "as.faraso.97@gmail.com"
+EMAIL_HOST_USER = "kiana.alamy.2003.gmail.com"
+EMAIL_HOST_PASSWORD = 'qvxu mlix yhil augk'
+DEFAULT_FROM_EMAIL = "kiana.alamy.2003.gmail.com"
 
-# CACHES = {
-# "default": {
-# "BACKEND": "django_redis.cache.RedisCache",
-# "LOCATION": "redis://127.0.0.1:6379/1",
-# "OPTIONS": {
-# "CLIENT_CLASS": "django_redis.client.DefaultClient",
-# },
-# }
-# }
+
+CACHES = {
+"default": {
+"BACKEND": "django_redis.cache.RedisCache",
+"LOCATION": "redis://127.0.0.1:6379/1",
+"OPTIONS": {
+"CLIENT_CLASS": "django_redis.client.DefaultClient",
+},
+}
+}
 
 
 # #**********************
