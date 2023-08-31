@@ -10,8 +10,8 @@ My address: Iran , Mashhad , Ladan street
 
 **Tools:**
 
-Back-End: Python, Django, REST API
-Data Base: PostgreSQL , SQLit3
+Back-End: Python, Django, REST API /n
+Data Base: PostgreSQL , SQLit3 /n
 Front-End: HTML5, CSS3
 
 **Running this project**
@@ -26,14 +26,14 @@ Clone or download this repository and open it in your editor of choice. In a ter
 
 That will create a new folder env in your project directory. Next activate it with this command on mac/linux:
 
-  source env/bin/active
+        source env/bin/active
 
 Then install the project dependencies with
 
-  pip install -r requirements.txt
+        pip install -r requirements.txt
 
 Now you can run the project with this command
 
-  python manage.py runserver
+        python manage.py runserver
 
 Note if you want payments or email or sms to work you will need to enter your own Stripe API keys into the .env file in the settings files.
