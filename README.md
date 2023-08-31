@@ -12,11 +12,17 @@ How to reach me: kiana.alamy.2003@gmail.com
 My address: Iran , Mashhad , Ladan street
 
 
-# Tools:
+## Technologies Used:
 
-1. Back-End: Python, Django, REST API
-2. Data Base: PostgreSQL , SQLit3
-3. Front-End: HTML5, CSS3
+- Django: The web framework used for building the online shop project.
+- PostgreSQL: The database management system used for storing data.
+- Redis: Used for caching and as the Celery message broker.
+- Celery: Used for task management, such as sending emails to customers asynchronously.
+- Docker: Used for containerization and deployment of the project.
+- Gunicorn: A Python WSGI HTTP server used for serving the Django application.
+- Nginx: A web server used as a reverse proxy and for serving static files.
+- HTML5, CSS, and JavaScript: The trio of technologies employed for front-end development, providing structure, styling, and interactivity to the web pages.
+- Yasg: Swagger library used for API documentation.
 
 # Running this project:
 
