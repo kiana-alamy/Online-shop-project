@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .forms import UserRegistrationForm, VerfiyCodeForm, UserLoginForm, UserProfileForm
+from .forms import UserRegistrationForm, VerfiyCodeForm, UserLoginForm, ProfileForm
 from django.views import View
 import random
 from utils import send_otp_code
@@ -7,12 +7,14 @@ from .models import OtpCode, User
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from orders.models import Order
 
-class UserProfileView(View):
-    form_class = UserProfileForm
-    def post(self, request):
-        form = self.form_class(request.POST)
-        cd = form.cleaned_data
+class ProfileView(View):
+    def get(self , request , user_id):
+        user = User.objects.get(id = user_id)
+        order = Order.objects.filter(user = request.user)
+        return render(request , 'accounts/profile.html' , {'user':user ,'order':order})
+
         
 
 class UserRegisterView(View):

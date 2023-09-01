@@ -63,3 +63,9 @@ We welcome contributions from the community to improve the project. If you would
 3. Make the necessary changes and commit them.
 4. Push your changes to your forked repository.
 5. Submit a pull request describing the changes you've made.
+
+
+# Photos related to the site:
+
+![Screenshot (8)](https://github.com/kiana-alamy/Online-shop-project/assets/129387183/5d85d919-5946-4a94-90a2-c29a79478ffe)
+![Screenshot (9)](https://github.com/kiana-alamy/Online-shop-project/assets/129387183/a909b745-2cfd-4242-b1ad-a2ebfbf74b67)

@@ -38,10 +38,6 @@ class UserChangeForm(forms.ModelForm):
         fields = ('phone_number', 'full_name', 'last_login',)
 
 
-class UserProfileForm(forms.Form):
-    address= forms.TimeField()
-    postal_code = forms.IntegerField()
-
 
 class UserRegistrationForm(forms.Form):
     email= forms.EmailField()
@@ -86,5 +82,11 @@ class VerfiyCodeForm(forms.Form):
 class UserLoginForm(forms.Form):
     phone_number = forms.CharField(max_length=11)
     password = forms.CharField(widget=forms.PasswordInput)
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        exclude = ('password','last_login','is_admin','is_active','is_superuser','phone_number','groups','user_permissions',)
+
 
 
